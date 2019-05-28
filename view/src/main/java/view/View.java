@@ -37,7 +37,7 @@ public final class View implements IView, Runnable {
 	 *          the key code
 	 * @return the controller order
 	 */
-	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+	/*protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 			case KeyEvent.VK_G:
 				return ControllerOrder.English;
@@ -50,16 +50,16 @@ public final class View implements IView, Runnable {
 			default:
 				return ControllerOrder.English;
 		}
-	}
+	}*/
 
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IView#printMessage(java.lang.String)
 	 */
-	public void printMessage(final String message) {
+	/*public void printMessage(final String message) {
 		this.viewFrame.printMessage(message);
-	}
+	}*/
 
 	/*
 	 * (non-Javadoc)

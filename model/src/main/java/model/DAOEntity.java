@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import entity.Entity;
+import entity.Level1;
 
 /**
  * The Class DAOEntity.
@@ -83,5 +84,7 @@ abstract class DAOEntity<E extends Entity> {
 	 * @return the e
 	 */
 	public abstract E find(String code);
+
+	
 
 }

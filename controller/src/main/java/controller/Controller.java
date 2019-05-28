@@ -38,7 +38,8 @@ public final class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		//this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		
 	}
 
 	/**
@@ -60,7 +61,8 @@ public final class Controller implements IController {
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
-
+     
+	
 	/**
      * Order perform.
      *
@@ -72,7 +74,8 @@ public final class Controller implements IController {
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
-	public void orderPerform(final ControllerOrder controllerOrder) {
+	
+	/*public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case English:
 				this.model.loadHelloWorld("GB");
@@ -90,5 +93,5 @@ public final class Controller implements IController {
 				break;
 		}
 	}
-
+*/
 }

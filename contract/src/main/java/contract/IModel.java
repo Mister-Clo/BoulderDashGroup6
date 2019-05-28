@@ -1,5 +1,6 @@
 package contract;
 
+import java.awt.Image;
 import java.util.Observable;
 
 import entity.HelloWorld;
@@ -11,12 +12,23 @@ import entity.HelloWorld;
  */
 public interface IModel {
 
+	
+	public int getXsolnoir();
+
+	public void setXsolnoir(int xsolnoir);
+
+	public int getYsolnoir();
+
+	public void setYsolnoir(int ysolnoir);
+
+	public Image getImgFond();
+	
 	/**
 	 * Gets the hello world.
 	 *
 	 * @return the helloworld entity
 	 */
-	HelloWorld getHelloWorld();
+	//HelloWorld getHelloWorld();
 
 	/**
 	 * Load the message.
@@ -24,7 +36,7 @@ public interface IModel {
 	 * @param code
 	 *          the code
 	 */
-	void loadHelloWorld(String code);
+	//void loadHelloWorld(String code);
 
 	/**
 	 * Gets the observable.
