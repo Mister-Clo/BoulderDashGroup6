@@ -1,6 +1,7 @@
 package contract;
 
 import java.awt.Image;
+import java.sql.SQLException;
 import java.util.Observable;
 
 import entity.HelloWorld;
@@ -22,6 +23,7 @@ public interface IModel {
 	public void setYsolnoir(int ysolnoir);
 
 	public Image getImgFond();
+	public char[][] loadFind() throws SQLException;
 	
 	/**
 	 * Gets the hello world.

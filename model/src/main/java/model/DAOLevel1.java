@@ -13,6 +13,7 @@ import com.mysql.jdbc.Statement;
 import entity.Level1;
 
 public class DAOLevel1 extends DAOEntity<Level1> {
+	private char[][] elements; 
 
 	public DAOLevel1(Connection connection) throws SQLException {
 		super(connection);
@@ -47,14 +48,14 @@ public class DAOLevel1 extends DAOEntity<Level1> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			call.getMoreResults(Statement.KEEP_CURRENT_RESULT);
-			/**Filling a 2-Dimensional char Array with the characters from the database*/ 
+			/**Filling a 2-Dimensional char Array with the characters from the database*/  
 			while(resultSet.next()) {
 				strCurrentline=resultSet.getString("map1");
 				for(int j=0; j<51;j++) {
 					elements[i][j]=strCurrentline.charAt(j);
 				}
 				i++;
-				/**Output map for level*/
+				  /**Output map for level*/
 				for(int a=0; a<resultSet.getMetaData().getColumnCount();a++) {
 					System.out.println(resultSet.getObject(a+1));
 				}
@@ -64,8 +65,7 @@ public class DAOLevel1 extends DAOEntity<Level1> {
 		}catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		return
-				elements;
+		return elements;		
 	}
 
 	@Override

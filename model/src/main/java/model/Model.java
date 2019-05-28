@@ -31,13 +31,11 @@ public final class Model extends Observable implements IModel {
 	 */
 	public Model() throws SQLException {
 		//this.helloWorld = new HelloWorld();
-		this.daolevel1 = new DAOLevel1(DBConnection.getInstance().getConnection());
+		
 		this.xsolnoir=0;
 		this.ysolnoir=0;
 		this.iFond= new ImageIcon(getClass().getResource("/images/solnoir.png"));
 		this.imgFond= this.iFond.getImage();
-		this.daolevel1.find();
-		
 	}
 	
 	public int getXsolnoir() {return xsolnoir;}
@@ -49,6 +47,15 @@ public final class Model extends Observable implements IModel {
 	public void setYsolnoir(int ysolnoir) {this.ysolnoir = ysolnoir;}
 
 	public Image getImgFond() {return imgFond;}
+	
+	@Override
+	public char[][] loadFind() throws SQLException {
+		char[][] b = null;
+		this.daolevel1 = new DAOLevel1(DBConnection.getInstance().getConnection());
+		b=this.daolevel1.find();
+		return b;
+	}
+
 	
 	
 
@@ -113,4 +120,5 @@ public final class Model extends Observable implements IModel {
 	public Observable getObservable() {
 		return this;
 	}
-}
+
+	}

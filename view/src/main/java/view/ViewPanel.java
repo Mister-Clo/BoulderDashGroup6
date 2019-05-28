@@ -83,6 +83,13 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		Graphics2D g2 = (Graphics2D)graphics;
+		char[][] elements = null;
+		try {
+			elements = model.loadFind();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		/** Draw background*/
 		for(int i=0; i<30;i++) {
 			for(int j=0; j<50; j++) {
@@ -92,7 +99,12 @@ class ViewPanel extends JPanel implements Observer {
 			model.setXsolnoir(0);
 			model.setYsolnoir(model.getYsolnoir()+32);
 		}
-		//g2.clearRect(0, 0, this.getWidth(), this.getHeight());
+		/**Draw grahic elements*/
+		for(int i=0; i<24;i++) {
+			for(int j=0; j<51; j++) {
+				
+			}
+		}
 		//graphics.drawString(this.getViewFrame().getModel().getHelloWorld().getMessage(), 10, 20);
 		
 	}
