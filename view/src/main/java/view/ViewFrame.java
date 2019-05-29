@@ -134,10 +134,10 @@ class ViewFrame extends JFrame implements KeyListener {
 		try {
 			this.setContentPane(new ViewPanel(this));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.setSize(1504, 768);
+		//this.setSize(1504, 828);
+		this.setSize(1000, 500);
 		this.setLocationRelativeTo(null);
 		this.setTitle("BoulderDash");
 	}
@@ -167,6 +167,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
+		
 	//	this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 	}
 

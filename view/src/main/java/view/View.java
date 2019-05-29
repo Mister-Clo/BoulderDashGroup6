@@ -18,6 +18,9 @@ public final class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+	private final int PAUSE=3;
+	
+	
 
 	/**
 	 * Instantiates a new view.
@@ -68,6 +71,7 @@ public final class View implements IView, Runnable {
 	 */
 	public void run() {
 		this.viewFrame.setVisible(true);
+		
 	}
 
 	/**
