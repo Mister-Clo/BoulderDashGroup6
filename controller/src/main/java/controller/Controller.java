@@ -1,9 +1,13 @@
 package controller;
 
-import contract.ControllerOrder;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+
 
 /**
  * The Class Controller.
@@ -15,6 +19,7 @@ public final class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
 
 	/**
 	 * Instantiates a new controller.
@@ -39,6 +44,7 @@ public final class Controller implements IController {
 	 */
 	public void control() {
 		//this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		
 		
 	}
 
@@ -95,3 +101,9 @@ public final class Controller implements IController {
 	}
 */
 }
+/*Timer t = new Timer();
+
+t.schedule(new TimerTask() {
+	public void run() {
+	}
+},0,80);*/

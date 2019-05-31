@@ -38,7 +38,7 @@ public class DAOLevel1 extends DAOEntity<Level1> {
 	}
 
 	public char[][] find() {
-		 char[][] elements = new char[24][51];
+		 char[][] elements = new char[25][51];
 		 String strCurrentline = null;
 		 int i= 0;
 		
@@ -55,10 +55,10 @@ public class DAOLevel1 extends DAOEntity<Level1> {
 					elements[i][j]=strCurrentline.charAt(j);
 				}
 				i++;
-				  /**Output map for level*/
+				  /*Output map for level
 				for(int a=0; a<resultSet.getMetaData().getColumnCount();a++) {
 					System.out.println(resultSet.getObject(a+1));
-				}
+				}*/
 				System.out.print("");
 			}
 			

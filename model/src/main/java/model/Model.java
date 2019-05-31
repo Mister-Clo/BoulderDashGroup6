@@ -1,13 +1,9 @@
 package model;
 
-import java.awt.Image;
 import java.sql.SQLException;
 import java.util.Observable;
 
-import javax.swing.ImageIcon;
-
 import contract.IModel;
-import entity.Level1;
 
 /**
  * The Class Model.
@@ -20,11 +16,6 @@ public final class Model extends Observable implements IModel {
 	//private HelloWorld helloWorld;
 	private DAOLevel1 daolevel1;
 	
-	/** The Frame background image.*/
-	private int xsolnoir, ysolnoir;
-	private ImageIcon iFond;
-	private Image imgFond; 
-	
 	/**
 	 * Instantiates a new model.
 	 * @throws SQLException 
@@ -32,22 +23,11 @@ public final class Model extends Observable implements IModel {
 	public Model() throws SQLException {
 		//this.helloWorld = new HelloWorld();
 		
-		this.xsolnoir=0;
-		this.ysolnoir=0;
-		this.iFond= new ImageIcon(getClass().getResource("/images/solnoir.png"));
-		this.imgFond= this.iFond.getImage();
+		
 	}
 	
-	public int getXsolnoir() {return xsolnoir;}
-
-	public void setXsolnoir(int xsolnoir) {this.xsolnoir = xsolnoir;}
-
-	public int getYsolnoir() {return ysolnoir;}
-
-	public void setYsolnoir(int ysolnoir) {this.ysolnoir = ysolnoir;}
-
-	public Image getImgFond() {return imgFond;}
 	
+
 	@Override
 	public char[][] loadFind() throws SQLException {
 		char[][] b = null;

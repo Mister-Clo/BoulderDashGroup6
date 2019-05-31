@@ -8,6 +8,7 @@ import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+import model.Rockford;
 
 /**
  * The Class View.
@@ -19,6 +20,7 @@ public final class View implements IView, Runnable {
 	/** The frame. */
 	private final ViewFrame viewFrame;
 	private final int PAUSE=3;
+	
 	
 	
 

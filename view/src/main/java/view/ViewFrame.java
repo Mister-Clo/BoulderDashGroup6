@@ -5,12 +5,10 @@ import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import contract.IController;
 import contract.IModel;
+import model.Rockford;
 
 /**
  * The Class ViewFrame.
@@ -25,6 +23,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	/** The controller. */
 	private IController				controller;
 	/** The Constant serialVersionUID. */
+	private Rockford rockford;
 	private static final long	serialVersionUID	= -697358409737458175L;
 
 	/**
@@ -37,7 +36,11 @@ class ViewFrame extends JFrame implements KeyListener {
 	 */
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
+		this.rockford=new Rockford(256,192);
+	
 	}
+	public Rockford getRockford() {return rockford;}
+	public void setRockford(Rockford rockford) {this.rockford = rockford;}
 
 	/**
 	 * Instantiates a new view frame.
@@ -50,6 +53,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
 		super(gc);
 		this.buildViewFrame(model);
+	
 	}
 
 	/**
@@ -87,7 +91,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @return the controller
 	 */
-	private IController getController() {
+	/*private IController getController() {
 		return this.controller;
 	}
 
@@ -131,13 +135,14 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.addKeyListener(this);
+		this.setFocusable(true);
+		this.requestFocusInWindow(true);
 		try {
 			this.setContentPane(new ViewPanel(this));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//this.setSize(1504, 828);
-		this.setSize(1000, 500);
+		this.setSize(1504, 828);
 		this.setLocationRelativeTo(null);
 		this.setTitle("BoulderDash");
 	}
@@ -167,8 +172,30 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
+		if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
+			
+			this.getRockford().setMoveRight(true);
+			this.getRockford().setMove(true);
+			this.getRockford().setX(this.getRockford().getX()+32);
+		}
+		else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+			this.getRockford().setMoveRight(false);
+			this.getRockford().setMove(true);
+			this.getRockford().setX(this.getRockford().getX()-32);
+		}
+		else if(e.getKeyCode()==KeyEvent.VK_UP) {
+			this.getRockford().setMoveUp(true);
+			this.getRockford().setMove(true);
+			this.getRockford().setY(this.getRockford().getY()-32);
+		}
+		else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+			this.getRockford().setMoveUp(false);
+			this.getRockford().setMove(true);
+			this.getRockford().setY(this.getRockford().getY()+32);
+		}
 		
 	//	this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+	
 	}
 
 	/*
@@ -177,6 +204,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
 	 */
 	public void keyReleased(final KeyEvent e) {
-
+		this.getRockford().setMove(false);
 	}
 }
