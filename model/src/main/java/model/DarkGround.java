@@ -11,6 +11,7 @@ public class DarkGround extends GraphicElements {
 		super.icoObject= new ImageIcon(getClass().getResource("/images/solnoir.png"));
 		super.imgObject= this.icoObject.getImage();
 	}
+	public DarkGround() {}
 
 	@Override
 	public Image shine() {

@@ -57,7 +57,7 @@ class ViewPanel extends JPanel implements Observer,ActionListener{
 		tabRocks = new ArrayList<Rock>();
 		tabWalls = new ArrayList<Wall>();
 		tabDarkGrounds= new ArrayList<DarkGround>();
-		chrono = new Timer(5, this);
+		chrono = new Timer(10, this);
 		
 		this.model= new Model();
 		this.setViewFrame(viewFrame);
@@ -120,13 +120,54 @@ class ViewPanel extends JPanel implements Observer,ActionListener{
 	 */
 	public void update(final Observable arg0, final Object arg1) {
 		//this.repaint();
-		/*Timer t = new Timer();
-		t.schedule(new TimerTask() {
-			public void run() {
-			 repaint();
-			}
-		},0,5);*/
 		
+	}
+	/**
+	 * Dig ground and collect diamonds
+	 */
+	private void dig() {
+		for(int i=0; i<25;i++) {
+			for(int j=0; j<51; j++) {
+				if(objects[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
+					if(objects[i][j].getX()==this.viewFrame.getRockford().getX() && objects[i][j].getY()==this.viewFrame.getRockford().getY()) {
+						this.tabGrounds.remove(objects[i][j]);
+						objects[i][j]= new DarkGround(j*32, i*32);
+			        	this.tabDarkGrounds.add((DarkGround) objects[i][j]);}
+				}else if((objects[i][j].getClass().toString().equals(new Diamond().getClass().toString()))) {
+					if(objects[i][j].getX()==this.viewFrame.getRockford().getX() && objects[i][j].getY()==this.viewFrame.getRockford().getY()) {
+						this.tabDiamonds.remove(objects[i][j]);
+						objects[i][j]= new DarkGround(j*32, i*32);
+						this.tabDarkGrounds.add((DarkGround) objects[i][j]);
+					}}}}}
+	public void rockfall() {
+		for(int i=0; i<25;i++) {
+			for(int j=0; j<51; j++) {
+				if((objects[i][j].getClass().toString().equals(new Rock().getClass().toString()))) {
+						if((objects[i+1][j].getClass().toString().equals(new DarkGround().getClass().toString()))) {
+					if(objects[i][j].getY()+32==objects[i+1][j].getY()) {
+						tabRocks.remove(objects[i][j]);
+						objects[i][j]= new DarkGround(j*32, i*32);
+						objects[i+1][j]=new Rock(j*32, (i+1)*32);
+						this.tabRocks.add((Rock) objects[i+1][j]);
+						this.tabDarkGrounds.add((DarkGround) objects[i][j]);
+					  }		
+				  }
+				}
+			}
+	   }
+	}
+	
+	private void hitWall() {
+		for(int i = 0; i< this.tabWalls.size(); i++) {
+			 if(this.viewFrame.getRockford().isNear(this.tabWalls.get(i))) {
+				 this.viewFrame.getRockford().ContactWall(this.tabWalls.get(i));
+			 }}
+	}
+	private void hitRock() {
+		for(int i = 0; i< this.tabRocks.size(); i++) {
+			 if(this.viewFrame.getRockford().isNear(this.tabRocks.get(i))) {
+				 this.viewFrame.getRockford().ContactRock(this.tabRocks.get(i));
+			 } }
 	}
 
 	/*
@@ -137,35 +178,13 @@ class ViewPanel extends JPanel implements Observer,ActionListener{
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		Graphics2D g2 = (Graphics2D)graphics;
-		/** Draw background*/
-		/*for(int i=0; i<25;i++) {
-			for(int j=0; j<51; j++) {
-				g2.drawImage(model.getImgFond(), model.getXsolnoir(), model.getYsolnoir(), null);
-				model.setXsolnoir(model.getXsolnoir()+32);
-			}
-			model.setXsolnoir(0);
-			model.setYsolnoir(model.getYsolnoir()+32);
-		}*/
+		hitWall();
+		hitRock();
 		
-		for(int i=0; i<25;i++) {
-			for(int j=0; j<51; j++) {
-				if(objects[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
-					if(objects[i][j].getX()==this.viewFrame.getRockford().getX() && objects[i][j].getY()==this.viewFrame.getRockford().getY()) {
-						this.tabGrounds.remove(objects[i][j]);
-						objects[i][j]= new DarkGround(j*32, i*32);
-						this.tabDarkGrounds.add((DarkGround) objects[i][j]);
-					}
-				}else if((objects[i][j].getClass().toString().equals(new Diamond().getClass().toString()))) {
-					if(objects[i][j].getX()==this.viewFrame.getRockford().getX() && objects[i][j].getY()==this.viewFrame.getRockford().getY()) {
-						this.tabDiamonds.remove(objects[i][j]);
-						objects[i][j]= new DarkGround(j*32, i*32);
-						this.tabDarkGrounds.add((DarkGround) objects[i][j]);
-					}
-				}
-				
-			}
-		}
-		
+	//Draw DarkGrounds
+			for(int i = 0; i< this.tabDarkGrounds.size(); i++) {
+			g2.drawImage(this.tabDarkGrounds.get(i).getImgObject(), this.tabDarkGrounds.get(i).getX(), this.tabDarkGrounds.get(i).getY(), null);
+						}
 	//Draw Grounds
 		for(int i = 0; i< this.tabGrounds.size(); i++) {
 			 g2.drawImage(this.tabGrounds.get(i).getImgObject(), this.tabGrounds.get(i).getX(), this.tabGrounds.get(i).getY(), null);
@@ -174,27 +193,30 @@ class ViewPanel extends JPanel implements Observer,ActionListener{
 		for(int i = 0; i< this.tabDiamonds.size(); i++) {
 			 g2.drawImage(this.tabDiamonds.get(i).getImgObject(), this.tabDiamonds.get(i).getX(), this.tabDiamonds.get(i).getY(), null);
 		 }	
-    //Draw Rocks
-		for(int i = 0; i< this.tabRocks.size(); i++) {
-			g2.drawImage(this.tabRocks.get(i).getImgObject(), this.tabRocks.get(i).getX(), this.tabRocks.get(i).getY(), null);
-				 }	
+    
 	//Draw Walls
 		for(int i = 0; i< this.tabWalls.size(); i++) {
 			g2.drawImage(this.tabWalls.get(i).getImgObject(), this.tabWalls.get(i).getX(), this.tabWalls.get(i).getY(), null);
-				 }	
-		for(int i = 0; i< this.tabDarkGrounds.size(); i++) {
-			g2.drawImage(this.tabDarkGrounds.get(i).getImgObject(), this.tabDarkGrounds.get(i).getX(), this.tabDarkGrounds.get(i).getY(), null);
 				 }
+	//Draw Rocks
+		for(int i = 0; i< this.tabRocks.size(); i++) {
+			g2.drawImage(this.tabRocks.get(i).getImgObject(), this.tabRocks.get(i).getX(), this.tabRocks.get(i).getY(), null);
+						}		
 		
 		g2.drawImage(this.viewFrame.getRockford().move(2), this.viewFrame.getRockford().getX(),this.viewFrame.getRockford().getY(), null); 
-		repaint();
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		dig();
+		hitWall();
+		hitRock();
+		rockfall();
 		repaint();
+		
 		try {
-		      Thread.sleep(10);
+		      Thread.sleep(20);
 		    } catch (InterruptedException exc) {
 		      exc .printStackTrace();
 		    }

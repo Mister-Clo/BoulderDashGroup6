@@ -6,9 +6,13 @@ import javax.swing.ImageIcon;
 
 public class Character {
 	private int width, height,x, y;
-	private boolean move;
-	private boolean moveRight;
-	private boolean moveUp;
+	private boolean move=true;
+	private boolean moveRight=true;
+	private boolean moveUp=true;
+	private boolean hasContactright=false;
+	private boolean hasContactleft=false;
+	private boolean hasContactabove=false;
+	private boolean hasContactbelow=false;
 	public int count;
 	
 	protected Image imgChar;
@@ -39,6 +43,14 @@ public class Character {
 	public void setMoveRight(boolean moveRight) {this.moveRight = moveRight;}
 	public boolean isMoveUp() {return moveUp;}
 	public void setMoveUp(boolean moveUp) {this.moveUp = moveUp;}
+	public boolean isHasContactright() {return hasContactright;}
+	public void setHasContactright(boolean hasContactright) {this.hasContactright = hasContactright;}
+	public boolean isHasContactleft() {return hasContactleft;}
+	public void setHasContactleft(boolean hasContactleft) {this.hasContactleft = hasContactleft;}
+	public boolean isHasContactabove() {return hasContactabove;}
+	public void setHasContactabove(boolean hasContactabove) {this.hasContactabove = hasContactabove;}
+	public boolean isHasContactbelow() {return hasContactbelow;}
+	public void setHasContactbelow(boolean hasContactbelow) {this.hasContactbelow = hasContactbelow;}
 	public Image move(int freq) {
 		String str = new String();
 		ImageIcon ico;
@@ -52,34 +64,46 @@ public class Character {
 	}
 	
 	//Detection of contact at the right of Rockford
-    public boolean rightContact(GraphicElements ge) {
+    protected boolean rightContact(GraphicElements ge) {
     	if(this.x+32==ge.getX()&& this.y==ge.getY()) {
+    		this.setHasContactright(true);
     		return true;
-    	}else return false;		
+    	}else {this.setHasContactright(false);
+    		return false;		
+    	}
     }
   //Detection of contact at the left of Rockford
     protected boolean leftContact(GraphicElements ge) { 
-    	if(this.x-32==ge.getX()&& this.y==ge.getY()) {
+    	if(this.x-32==ge.getX()&& this.y==ge.getY() ) {
+    		this.setHasContactleft(true);
     		return true;
-    	}else return false;		
+    	}else {this.setHasContactleft(false);
+    		return false;		
+    	}
 }
   //Detection of contact beneath Rockford
     protected boolean beneathContact(GraphicElements ge) { 
 		if(this.x==ge.getX() && this.y+32==ge.getY()) {
+			this.setHasContactbelow(true);
 			return true;
-		}else return false;		
+		}else {this.setHasContactbelow(false);
+			return false;		
+		}
 }  
   //Detection of contact above Rockford
     protected boolean aboveContact(GraphicElements ge) { 
     	if(this.x==ge.getX() && this.y-32==ge.getY()) {
+    		this.setHasContactabove(true);
 			return true;
-		}else return false;		
+		}else {this.setHasContactabove(false);
+			return false;		
+		}
 }
 	
      public boolean isNear(GraphicElements ge) {
     	 if((this.x-32==ge.getX()&& this.y==ge.getY()) || (this.x+32==ge.getX()&& this.y==ge.getY()) || (this.x==ge.getX() && this.y-32==ge.getY()) || (this.x==ge.getX() && this.y+32==ge.getY())  ) {
      		return true;
-     	}else return true;	
+     	}else return false;	
      }
    
      

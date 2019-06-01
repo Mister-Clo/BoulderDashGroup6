@@ -37,20 +37,21 @@ public class DAOLevel1 extends DAOEntity<Level1> {
 		return false;
 	}
 
-	public char[][] find() {
+	public char[][] findlevel(final int id) {
 		 char[][] elements = new char[25][51];
 		 String strCurrentline = null;
 		 int i= 0;
 		
 		try {
-			final String sql= "{call FetchLevel1()}";
+			final String sql= "{call FetchLevel(?)}";
 			final CallableStatement call = this.getConnection().prepareCall(sql);
+			call.setInt(1, id);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			call.getMoreResults(Statement.KEEP_CURRENT_RESULT);
 			/**Filling a 2-Dimensional char Array with the characters from the database*/  
 			while(resultSet.next()) {
-				strCurrentline=resultSet.getString("map1");
+				strCurrentline=resultSet.getString("map");
 				for(int j=0; j<51;j++) {
 					elements[i][j]=strCurrentline.charAt(j);
 				}

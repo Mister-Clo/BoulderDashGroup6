@@ -24,6 +24,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	private IController				controller;
 	/** The Constant serialVersionUID. */
 	private Rockford rockford;
+	
 	private static final long	serialVersionUID	= -697358409737458175L;
 
 	/**
@@ -173,29 +174,37 @@ class ViewFrame extends JFrame implements KeyListener {
 	 */
 	public void keyPressed(final KeyEvent e) {
 		if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
+			if(this.getRockford().isHasContactright()==false) {
+				this.getRockford().setMove(true);
+				this.getRockford().setMoveRight(true);
+				this.getRockford().setX(this.getRockford().getX()+32);
+			}				
+		}
+		 if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+			 if(this.getRockford().isHasContactleft()==false) {
+					this.getRockford().setMove(true);
+					this.getRockford().setMoveRight(false);
+					this.getRockford().setX(this.getRockford().getX()-32);
+				}
+		}
+		if(e.getKeyCode()==KeyEvent.VK_UP) {
+			if(this.getRockford().isHasContactabove()==false) {
+				this.getRockford().setHasContactright(false);
+				this.getRockford().setMove(true);
+				this.getRockford().setMoveUp(true);
+				this.getRockford().setY(this.getRockford().getY()-32);
+			}
 			
-			this.getRockford().setMoveRight(true);
-			this.getRockford().setMove(true);
-			this.getRockford().setX(this.getRockford().getX()+32);
 		}
-		else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-			this.getRockford().setMoveRight(false);
-			this.getRockford().setMove(true);
-			this.getRockford().setX(this.getRockford().getX()-32);
-		}
-		else if(e.getKeyCode()==KeyEvent.VK_UP) {
-			this.getRockford().setMoveUp(true);
-			this.getRockford().setMove(true);
-			this.getRockford().setY(this.getRockford().getY()-32);
-		}
-		else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-			this.getRockford().setMoveUp(false);
-			this.getRockford().setMove(true);
-			this.getRockford().setY(this.getRockford().getY()+32);
+		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+			if(this.getRockford().isHasContactbelow()==false) {
+				this.getRockford().setMove(true);
+				this.getRockford().setMoveUp(false);
+				this.getRockford().setY(this.getRockford().getY()+32);	
+			}
 		}
 		
 	//	this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
-	
 	}
 
 	/*
@@ -205,5 +214,10 @@ class ViewFrame extends JFrame implements KeyListener {
 	 */
 	public void keyReleased(final KeyEvent e) {
 		this.getRockford().setMove(false);
+		this.getRockford().setHasContactright(false);
+		this.getRockford().setHasContactleft(false);
+		this.getRockford().setHasContactabove(false);
+		this.getRockford().setHasContactbelow(false);
+		
 	}
 }

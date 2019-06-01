@@ -11,11 +11,9 @@ import contract.IModel;
  * @author Jean-Aymeric Diet
  */
 public final class Model extends Observable implements IModel {
-
 	/** The helloWorld. */
 	//private HelloWorld helloWorld;
 	private DAOLevel1 daolevel1;
-	
 	/**
 	 * Instantiates a new model.
 	 * @throws SQLException 
@@ -32,7 +30,7 @@ public final class Model extends Observable implements IModel {
 	public char[][] loadFind() throws SQLException {
 		char[][] b = null;
 		this.daolevel1 = new DAOLevel1(DBConnection.getInstance().getConnection());
-		b=this.daolevel1.find();
+		b=this.daolevel1.findlevel(2);
 		return b;
 	}
 
