@@ -1,14 +1,15 @@
 package model;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
 
+/**
+ * Class Diamond
+ * @author Group6
+ *
+ */
 public class Diamond extends GraphicElements  {
 	
 	private int i=1;
@@ -24,21 +25,19 @@ public class Diamond extends GraphicElements  {
 	 * enables the diamond to have a shiny effect
 	 * @return
 	 */
-	
-	
-	
-	@Override
 	public Image shine() {
-		if(i>3) {i=1;}
-		this.setIcoObject(new ImageIcon(getClass().getResource("/images/diam"+i+".png")));
-		this.setImgObject(this.getIcoObject().getImage());
-		i++;
-		
+		if((i==1)||(i>1 && i<5)) {
+			this.setIcoObject(new ImageIcon(getClass().getResource("/images/diam"+i+".png")));
+			this.setImgObject(this.getIcoObject().getImage());
+			i++;
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {} 	
+		}else {
+			i=1;
+		}
 		return this.getImgObject();
-		
-	}
-	
-		
+	 }	
 	}
 	
 
