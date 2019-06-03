@@ -13,7 +13,7 @@ import view.View;
 /**
  * The Class Main.
  *
- * @author Jean-Aymeric Diet
+ * @author Group6
  */
 public abstract class Main {
 
@@ -30,6 +30,5 @@ public abstract class Main {
         final Controller controller = new Controller(view, model);
         view.setController(controller);
         controller.control();
-      //controller.orderPerform(ControllerOrder.English);
     }
 }

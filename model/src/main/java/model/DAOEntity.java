@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import entity.Entity;
-import entity.Level1;
 
 /**
  * The Class DAOEntity.
  *
- * @author Jean-Aymeric Diet
+ * @author Group6
  *
  * @param <E>
  *          the element type

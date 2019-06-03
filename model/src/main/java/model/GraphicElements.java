@@ -4,6 +4,11 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Class GraphicElements
+ * @author Group6
+ *
+ */
 public abstract class GraphicElements {
 	private int width, height;
 	private int x, y;
@@ -11,6 +16,13 @@ public abstract class GraphicElements {
 	protected Image imgObject;
 	protected ImageIcon icoObject;
 	
+	/**
+	 * Instantiates a graphic element
+	 * @param width
+	 * @param height
+	 * @param x
+	 * @param y
+	 */
 	public GraphicElements(int width, int height, int x, int y) {
 		super();
 		this.width = 32;
@@ -28,9 +40,23 @@ public abstract class GraphicElements {
 	public void setX(int x) {this.x = x;}
 	public int getY() {return y;}
 	public void setY(int y) {this.y = y;}
+	/**
+	 * @return image of graphic element
+	 */
 	public Image getImgObject() {return imgObject;}
+	/**
+	 * Sets image of graphic element
+	 * @param imgObject
+	 */
 	public void setImgObject(Image imgObject) {this.imgObject = imgObject;} 
+	/**
+	 * Sets image icon of graphic element
+	 * @param icoObject
+	 */
 	public void setIcoObject(ImageIcon icoObject) {this.icoObject = icoObject;}
+	/**
+	 * @return image icon of graphic element
+	 */
 	public ImageIcon getIcoObject() {return icoObject;}
 
 	public abstract Image shine();

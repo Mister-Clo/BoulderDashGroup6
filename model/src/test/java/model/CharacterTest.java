@@ -19,25 +19,6 @@ import org.junit.Test;
 public class CharacterTest {
 
 	final Character rockford = new Character(32, 32, 64, 128);
-	
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * test of getWidth()
@@ -46,8 +27,6 @@ public class CharacterTest {
 	public void testGetWidth() {
 		final int expected = 32;
 		assertEquals(expected, rockford.getWidth());
-		
-		//fail("Not yet implemented");
 	}
 
 	/**
@@ -58,8 +37,6 @@ public class CharacterTest {
 		final int expected =64;
 		rockford.setWidth(expected);;
 		assertEquals(expected, rockford.getWidth());
-		
-	//	fail("Not yet implemented");
 	}
 
 	/**
@@ -69,8 +46,6 @@ public class CharacterTest {
 	public void testGetHeight() {
 		final int expected = 32;
 		assertEquals(expected, rockford.getHeight());
-	
-	//	fail("Not yet implemented");
 	}
 
 	/**
@@ -81,7 +56,6 @@ public class CharacterTest {
 		final int expected =64;
 		rockford.setHeight(expected);
 		assertEquals(expected, rockford.getHeight());
-	//	fail("Not yet implemented");
 	}
 
 	/**
@@ -91,8 +65,6 @@ public class CharacterTest {
 	public void testGetX() {
 		final int expected = 64;
 		assertEquals(expected, rockford.getX());
-	
-	//	fail("Not yet implemented");
 	}
 
 	/**
@@ -104,16 +76,15 @@ public class CharacterTest {
 		rockford.setX(expected);
 
 		assertEquals(expected, rockford.getX());
-		
-	//	fail("Not yet implemented");
 	}
 
+	/**
+	 * test of getY()
+	 */
 	@Test
 	public void testGetY() {
 		final int expected = 128;
-		assertEquals(expected, rockford.getY());
-		
-		//	fail("Not yet implemented");
+		assertEquals(expected, rockford.getY());		
 	}
 
 	/**
@@ -129,60 +100,146 @@ public class CharacterTest {
 	}
 
 	/**
-	 * tes of getImgChar
+	 * test of getImgChar and setImgChar()
 	 */
 	@Test
 	public void testGetImgChar() {
-		String str = new String();
-		if(this.rockford.isMove()==false) {str="/images/persoface2.png";}
-		if(this.rockford.isMove()==true) {str="/images/persoface.png";}
-		final Image expected = new ImageIcon(getClass().getResource(str)).getImage();
+		final Image expected = null;
+		rockford.setImgChar(null);
+
 		assertEquals(expected, rockford.getImgChar());
 		
 	}
 
 	/**
-	 * tes of setImgChar()
+	 * test of the method getCounter()
 	 */
 	@Test
-	public void testSetImgChar() {
-		final Image expected = null;
-		rockford.setImgChar(expected);
-
-		assertEquals(expected, rockford.getImgChar());
-		
-	}
-
-	@Test
 	public void testGetCounter() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetCounter() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsMove() {
-		fail("Not yet implemented");
+		int expected = 100;
+		rockford.count=100;
+		assertEquals(expected, rockford.getCounter());		
 	}
 
 	/**
-	 * tes of the method setMove()
+	 * test of the method setCounter()
+	 */
+	@Test
+	public void testSetCounter() {
+		int expected =100;
+		rockford.setCounter(100);
+		assertEquals(expected, rockford.getCounter());
+	}
+
+	/**
+	 * test of the method isMove()
+	 */
+	@Test
+	public void testIsMove() {
+		boolean expected = true;
+		rockford.move=true;
+		assertEquals(expected, rockford.isMove());
+	}
+	
+	/**
+	 * test of the method isMoveRight()
+	 */
+	@Test
+	public void testIsMoveRight() {
+		boolean expected = true;
+		rockford.moveRight=true;
+		assertEquals(expected, rockford.isMoveRight());
+	}
+		
+	/**
+	 * test of the method isMoveUp()
+	 */
+	@Test
+	public void testIsMoveUp() {
+		boolean expected = true;
+		rockford.moveUp=true;
+		assertEquals(expected, rockford.isMoveUp());
+	}
+	
+	/**
+	 * test of the method setMove()
 	 */
 	@Test
 	public void testSetMove() {
-		boolean move = true;
-		rockford.setMove(move);
+		boolean expected = true;
+		rockford.setMove(true);
 		
-		assertEquals(move, rockford.isMove());
+		assertEquals(expected, rockford.isMove());
 		
 	}
-
+	
+	/**
+	 * test of the method setHasContactright()
+	 */
 	@Test
-	public void testMove() {
-		fail("Not yet implemented");
+	public void testSetHasContactRight() {
+		boolean expected = true;
+		rockford.setHasContactright(true);
+		
+		assertEquals(expected, rockford.isHasContactright());
+		
 	}
 
+	
+	/**
+	 * test of the method setHasContactleft()
+	 */
+	@Test
+	public void testSetHasContactLeft() {
+		boolean expected = true;
+		rockford.setHasContactleft(true);
+		
+		assertEquals(expected, rockford.isHasContactleft());
+		
+	}
+	
+	/**
+	 * test of the method setHasContactabove()
+	 */
+	@Test
+	public void testSetHasContactAbove() {
+		boolean expected = true;
+		rockford.setHasContactabove(true);
+		
+		assertEquals(expected, rockford.isHasContactabove());
+		
+	}
+	
+	/**
+	 * test of the method setHasContactbelow()
+	 */
+	@Test
+	public void testSetHasContactBelow() {
+		boolean expected = true;
+		rockford.setHasContactbelow(true);
+		
+		assertEquals(expected, rockford.isHasContactbelow());
+		
+	}
+	
+	/**
+	 * test of setIcoChar()
+	 */
+	@Test
+	public void testSetIcoChar() {
+		ImageIcon expected = null;
+		rockford.setIcoChar(null);
+		assertEquals(expected, rockford.icoChar);
+	}
+
+	/**
+	 * test of getIcoChar()
+	 */
+	@Test
+	public void testGetIcoChar() {
+		ImageIcon expected = null;
+		rockford.icoChar = null;
+		assertEquals(expected, rockford.getIcoChar());
+	}
+	
 }

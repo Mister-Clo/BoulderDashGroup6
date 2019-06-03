@@ -1,29 +1,22 @@
 package view;
 
-import java.awt.event.KeyEvent;
-
 import javax.swing.SwingUtilities;
-
-import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-import model.Rockford;
+
 
 /**
  * The Class View.
  *
- * @author Jean-Aymeric Diet
+ * @author Group6
  */
 public final class View implements IView, Runnable {
 
 	/** The frame. */
-	private final ViewFrame viewFrame;
-	private final int PAUSE=3;
-	
-	
-	
+	public final ViewFrame viewFrame;
 
+	
 	/**
 	 * Instantiates a new view.
 	 *
@@ -34,38 +27,7 @@ public final class View implements IView, Runnable {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
 	}
-
-	/**
-	 * Key code to controller order.
-	 *
-	 * @param keyCode
-	 *          the key code
-	 * @return the controller order
-	 */
-	/*protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
-		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
-			default:
-				return ControllerOrder.English;
-		}
-	}*/
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IView#printMessage(java.lang.String)
-	 */
-	/*public void printMessage(final String message) {
-		this.viewFrame.printMessage(message);
-	}*/
-
+    
 	/*
 	 * (non-Javadoc)
 	 *
@@ -84,5 +46,5 @@ public final class View implements IView, Runnable {
 	 */
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
-	}
+	}	
 }

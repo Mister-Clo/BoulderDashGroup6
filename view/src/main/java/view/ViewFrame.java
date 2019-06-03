@@ -13,7 +13,7 @@ import model.Rockford;
 /**
  * The Class ViewFrame.
  *
- * @author Jean-Aymeric Diet
+ * @author Group6
  */
 class ViewFrame extends JFrame implements KeyListener {
 
@@ -38,10 +38,12 @@ class ViewFrame extends JFrame implements KeyListener {
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
 		this.rockford=new Rockford(256,192);
-	
 	}
+	
+	/**
+	 * @return rockford
+	 */
 	public Rockford getRockford() {return rockford;}
-	public void setRockford(Rockford rockford) {this.rockford = rockford;}
 
 	/**
 	 * Instantiates a new view frame.
@@ -92,7 +94,8 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @return the controller
 	 */
-	/*private IController getController() {
+	@SuppressWarnings("unused")
+	private IController getController() {
 		return this.controller;
 	}
 
@@ -141,6 +144,7 @@ class ViewFrame extends JFrame implements KeyListener {
 		try {
 			this.setContentPane(new ViewPanel(this));
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.setSize(1504, 828);
@@ -149,17 +153,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * Prints the message.
-	 *
-	 * @param message
-	 *          the message
-	 */
-	/*public void printMessage(final String message) {
-		JOptionPane.showMessageDialog(null, message);
-	}*/
-
-	/*
-	 * (non-Javadoc)
 	 *
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 	 */
@@ -167,7 +160,7 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
@@ -204,10 +197,9 @@ class ViewFrame extends JFrame implements KeyListener {
 			}
 		}
 		
-	//	this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)

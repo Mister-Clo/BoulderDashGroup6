@@ -8,31 +8,15 @@ import java.util.Observable;
 /**
  * The Interface IModel.
  *
- * @author Jean-Aymeric Diet
+ * @author Group6
  */
 public interface IModel {
-	
+	/**
+	 * Gets the characters of a level
+	 * @return the 2-dimensional array containing each character of a level
+	 * @throws SQLException
+	 */
 	public char[][] loadFind() throws SQLException;
 	
-	/**
-	 * Gets the hello world.
-	 *
-	 * @return the helloworld entity
-	 */
-	//HelloWorld getHelloWorld();
-
-	/**
-	 * Load the message.
-	 *
-	 * @param code
-	 *          the code
-	 */
-	//void loadHelloWorld(String code);
-
-	/**
-	 * Gets the observable.
-	 *
-	 * @return the observable
-	 */
 	Observable getObservable();
 }
