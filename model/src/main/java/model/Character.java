@@ -4,16 +4,21 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Class Character
+ * @author Group6
+ *
+ */
 public class Character {
-	private int width, height,x, y;
-	private boolean move=true;
-	private boolean moveRight=true;
-	private boolean moveUp=true;
-	private boolean hasContactright=false;
-	private boolean hasContactleft=false;
-	private boolean hasContactabove=false;
-	private boolean hasContactbelow=false;
-	public int count;
+	protected int width, height,x, y;
+	protected boolean move=true;
+	protected boolean moveRight=true;
+	protected boolean moveUp=true;
+	protected boolean hasContactright=false;
+	protected boolean hasContactleft=false;
+	protected boolean hasContactabove=false;
+	protected boolean hasContactbelow=false;
+	protected int count;
 	
 	protected Image imgChar;
 	protected ImageIcon icoChar;
@@ -25,7 +30,14 @@ public class Character {
 		this.x = x;
 		this.y = y;
 	}
+	/**
+	 * @return width
+	 */
 	public int getWidth() {return width;}
+	/**
+	 * Sets the width
+	 * @param width
+	 */
 	public void setWidth(int width) {this.width = width;}
 	public int getHeight() {return height;}
 	public void setHeight(int height) {this.height = height;}
@@ -33,7 +45,14 @@ public class Character {
 	public void setX(int x) {this.x = x;}
 	public int getY() {return y;}
 	public void setY(int y) {this.y = y;}
+	/**
+	 * @return Charcter's image
+	 */
 	public Image getImgChar() {return imgChar;}
+	/**
+	 * Sets the image of character
+	 * @param imgChar
+	 */
 	public void setImgChar(Image imgChar) {this.imgChar = imgChar;} 
 	public int getCounter() {return count;}
 	public void setCounter(int count) {this.count = count;}
@@ -51,19 +70,18 @@ public class Character {
 	public void setHasContactabove(boolean hasContactabove) {this.hasContactabove = hasContactabove;}
 	public boolean isHasContactbelow() {return hasContactbelow;}
 	public void setHasContactbelow(boolean hasContactbelow) {this.hasContactbelow = hasContactbelow;}
-	public Image move(int freq) {
-		String str = new String();
-		ImageIcon ico;
-		Image img;
-		if(this.move==false) {str="/images/persoface2.png";}
-		if(this.move==true) {str="/images/persoface.png";}
-		
-		ico = new ImageIcon(getClass().getResource(str));
-		img = ico.getImage();
-		return img;
-	}
+	public void setIcoChar(ImageIcon icoChar) {this.icoChar = icoChar;}
+	public ImageIcon getIcoChar() {return icoChar;}
 	
-	//Detection of contact at the right of Rockford
+
+	
+	
+	
+    /**
+     * Detection of contact at the right of Rockford
+     * @param ge
+     * @return true when rightContact if not false
+     */
     protected boolean rightContact(GraphicElements ge) {
     	if(this.x+32==ge.getX()&& this.y==ge.getY()) {
     		this.setHasContactright(true);
@@ -72,7 +90,12 @@ public class Character {
     		return false;		
     	}
     }
-  //Detection of contact at the left of Rockford
+  
+    /**
+     * Detection of contact at the left of Rockford
+     * @param ge
+     * @return true when leftContact if not false
+     */
     protected boolean leftContact(GraphicElements ge) { 
     	if(this.x-32==ge.getX()&& this.y==ge.getY() ) {
     		this.setHasContactleft(true);
@@ -81,7 +104,12 @@ public class Character {
     		return false;		
     	}
 }
-  //Detection of contact beneath Rockford
+  
+    /**
+     * Detection of contact beneath Rockford
+     * @param ge
+     * @return true when beneathContact if not false
+     */
     protected boolean beneathContact(GraphicElements ge) { 
 		if(this.x==ge.getX() && this.y+32==ge.getY()) {
 			this.setHasContactbelow(true);
@@ -90,8 +118,13 @@ public class Character {
 			return false;		
 		}
 }  
-  //Detection of contact above Rockford
-    protected boolean aboveContact(GraphicElements ge) { 
+  
+    /**
+     * Detection of contact above Rockford
+     * @param ge
+     * @return true when aboveContact if not false
+     */
+    public boolean aboveContact(GraphicElements ge) { 
     	if(this.x==ge.getX() && this.y-32==ge.getY()) {
     		this.setHasContactabove(true);
 			return true;
@@ -100,12 +133,26 @@ public class Character {
 		}
 }
 	
-     public boolean isNear(GraphicElements ge) {
+     /**
+      * Verify Rockford is near a graphic element
+      * @param ge
+      * @return true if near if not false 
+      */
+    public boolean isNear(GraphicElements ge) {
     	 if((this.x-32==ge.getX()&& this.y==ge.getY()) || (this.x+32==ge.getX()&& this.y==ge.getY()) || (this.x==ge.getX() && this.y-32==ge.getY()) || (this.x==ge.getX() && this.y+32==ge.getY())  ) {
      		return true;
      	}else return false;	
      }
-   
+     /**
+      *  Verify Rockford is near a monster
+      * @param ge
+      * @return true if near if not false 
+      */
+    public boolean isNearMonster(Character ge) {
+    	 if((this.x-32==ge.getX()&& this.y==ge.getY()) || (this.x+32==ge.getX()&& this.y==ge.getY()) || (this.x==ge.getX() && this.y-32==ge.getY()) || (this.x==ge.getX() && this.y+32==ge.getY())  ) {
+     		return true;
+     	}else return false;	
+     }
      
 
 }
